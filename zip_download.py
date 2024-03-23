@@ -20,7 +20,8 @@ class ZipDownload:
             try:
                 link_inputed = str(input("Digite o link: "))
                 # check if the link starts with http:// or https://
-                if link_inputed.startswith("http://") or link_inputed.startswith("https://"):
+                if (link_inputed.startswith("http://") and link_inputed.endswith(".zip") or
+                        link_inputed.startswith("https://") and link_inputed.endswith(".zip")):
                     # Check if the link is valid
                     if self.__is_link_valid(link_inputed):
                         self.__link = link_inputed
@@ -30,6 +31,7 @@ class ZipDownload:
                         raise Exception("Link inválido")
                 else:
                     # raise error
-                    raise Exception("Error link invalido! O link deve comecar com http:// or https://")
+                    raise Exception("Error link invalido! \n O link deve comecar com http:// or https:// e possuir um "
+                                    "arquivo .zip")
             except Exception as e:
                 print(e)
