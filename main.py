@@ -8,5 +8,5 @@ from zip_download import ZipDownload
 if __name__ == '__main__':
     zip_download = ZipDownload()
     zip_download.perguntar_link()
-
+    zip_download.baixar_arquivo()
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/

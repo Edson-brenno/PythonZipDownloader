@@ -32,7 +32,7 @@ class ZipDownload:
                                                                   len(link_inputed) - 2 if link_inputed.endswith(
                                                                       "/") else len(link_inputed))
                         # Seta nome arquivo
-                        self.__filename = link_inputed[posicao_ultima_barra + 1:posicao_ponto_zip]
+                        self.__filename = link_inputed[posicao_ultima_barra + 1:posicao_ponto_zip] + ".zip"
                         # Seta link
                         self.__link = link_inputed
                         break
@@ -46,3 +46,21 @@ class ZipDownload:
                 # check if the link starts with http:// or https://
             except Exception as e:
                 print(e)
+
+    def baixar_arquivo(self):
+        try:
+            # Open Connection
+            response = request.urlopen(self.__link)
+            # Configure the file
+            out_file = io.FileIO(self.__filename, mode="wb")
+            print("Baixando...")
+            # Read the data
+            data = response.read()
+            # Write the data
+            out_file.write(data)
+            #Close connections
+            out_file.close()
+            response.close()
+            print(f"O arquivo {self.__filename} foi baixado com sucesso!")
+        except Exception as e:
+            print(e)
